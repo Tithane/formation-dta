@@ -63,7 +63,7 @@ public class PizzeriaAdminConsoleApp {
 		for (int i = 0; i < pizzas.length; i++) {
 			newPizzas[i] = pizzas[i];
 		}
-		System.out.println("Veuillez saisir le code (3 caractères)");
+		System.out.println("Veuillez saisir le code");
 		String code = sc.next();
 
 		System.out.println("Veuillez saisir le nom (Sans espace)");
@@ -88,11 +88,11 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("\n 99- Annuler");
 		int selection = sc.nextInt();
 		if (selection != 99 && selection < pizzas.length) {
-			System.out.print("Code (3 caractères) ?");
+			System.out.print("Code ? ");
 			String ncode = sc.next();
-			System.out.print("Nom (Sans espace) ?");
+			System.out.print("Nom (Sans espace) ? ");
 			String nnom = sc.next();
-			System.out.print("Prix (XX.XX) ?");
+			System.out.print("Prix (XX.XX) ? ");
 			double nprix = sc.nextDouble();
 			pizzas[selection].setCode(ncode);
 			pizzas[selection].setNom(nnom);
@@ -105,19 +105,19 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("Suppression d'une pizza \n");
 		System.out.println("Choisissez la pizza à Supprimer :\n");
 		Pizza[] pizzaTemp = new Pizza[pizzas.length - 1];
-		int indexDel = 0;
 		for (Pizza pizza : pizzas) {
-			System.out.println(indexDel + "  - " + pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + ")");
-			indexDel++;
+			System.out.println(pizza.getId() + "  - " + pizza.getCode() + "  -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");
 		}
-		System.out.println("\n 99- Annuler");
+		System.out.println("\n0  - Annuler");
 		int selectionDel = sc.nextInt();
-		if (selectionDel != 99 && selectionDel < pizzas.length) {
-			for (int i = 0; i < pizzaTemp.length; i++) {
-				if (!pizzas[i].equals(pizzas[selectionDel]))
-						pizzaTemp[i] = pizzas[i];
-				pizzas = pizzaTemp;
+		if (selectionDel != 0) {
+			for (int i = 0; i < pizzas.length; i++) {
+				if(pizzas[i].getId()!= selectionDel){
+					pizzaTemp[i]=pizzas[i];
+				}
 			}
+			pizzas=pizzaTemp;
+			Pizza.setNbPizza(pizzas.length);
 		}
 		Menu(pizzas);
 	}
@@ -125,9 +125,9 @@ public class PizzeriaAdminConsoleApp {
 	public static void List(Pizza[] pizzas) {
 		System.out.println("\n");
 		for (Pizza pizza : pizzas) {
-			System.out.println(pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");
+			System.out.println(" "+pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");
 		}
-		System.out.println(Pizza.getNbPizza());
+		System.out.println(Pizza.getNbPizza()+" pizza(s) Disponible(s).");
 		Menu(pizzas);
 	}
 

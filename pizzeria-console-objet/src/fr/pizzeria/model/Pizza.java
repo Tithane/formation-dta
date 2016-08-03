@@ -3,6 +3,7 @@ package fr.pizzeria.model;
 public class Pizza {
 	
 	private static int nbPizza;
+	private static int idPiz;
 	
 	private int id;
 	private String code;
@@ -12,12 +13,14 @@ public class Pizza {
 	
 	//Constructor
 	public Pizza(){
-		setId(getId()+1);
+		setId(getIdPiz()+1);
+		setIdPiz(getIdPiz()+1);
 		setNbPizza(getNbPizza()+1);
 	}
 	public Pizza(String code, String nom, double prix) {
 		super();
-		setId(getId()+1);
+		setId(getIdPiz()+1);
+		setIdPiz(getIdPiz()+1);
 		this.code = code.toUpperCase();
 		this.nom = nom.replace('_',' ');
 		this.prix = prix;
@@ -25,8 +28,15 @@ public class Pizza {
 	}
 
 	//getter & setter
+	
 	public static int getNbPizza() {
 		return nbPizza;
+	}
+	public static int getIdPiz() {
+		return idPiz;
+	}
+	public static void setIdPiz(int idPiz) {
+		Pizza.idPiz = idPiz;
 	}
 	public static void setNbPizza(int nbPizza) {
 		Pizza.nbPizza = nbPizza;
