@@ -10,16 +10,16 @@ public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Pizza pizza0 = new Pizza("PEP","Pépéroni",12.50);
-		Pizza pizza1 = new Pizza("MAR","Margherita",14.00);
-		Pizza pizza2 = new Pizza("REIN","La reine",11.50);
-		Pizza pizza3 = new Pizza("FRO","La 4 fromages",12.00);
-		Pizza pizza4 = new Pizza("CAN","Cannibale",12.50);
-		Pizza pizza5 = new Pizza("SAV","La savoyarde",13.00);
-		Pizza pizza6 = new Pizza("ORI","L'orientale",13.50);
-		Pizza pizza7 = new Pizza("IND","L'indienne",14.00);
+		Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.50);
+		Pizza pizza1 = new Pizza("MAR", "Margherita", 14.00);
+		Pizza pizza2 = new Pizza("REIN", "La reine", 11.50);
+		Pizza pizza3 = new Pizza("FRO", "La 4 fromages", 12.00);
+		Pizza pizza4 = new Pizza("CAN", "Cannibale", 12.50);
+		Pizza pizza5 = new Pizza("SAV", "La savoyarde", 13.00);
+		Pizza pizza6 = new Pizza("ORI", "L'orientale", 13.50);
+		Pizza pizza7 = new Pizza("IND", "L'indienne", 14.00);
 
-		Pizza[] pizzas = new Pizza[] {pizza0,pizza1,pizza2,pizza3,pizza4,pizza5,pizza6,pizza7};
+		Pizza[] pizzas = new Pizza[] { pizza0, pizza1, pizza2, pizza3, pizza4, pizza5, pizza6, pizza7 };
 		Menu(pizzas);
 	}
 
@@ -71,8 +71,8 @@ public class PizzeriaAdminConsoleApp {
 
 		System.out.println("Veuillez saisir le prix (XX.XX)");
 		double prix = sc.nextDouble();
-		Pizza npizza = new Pizza(code,nom,prix);
-		newPizzas[pizzas.length]= npizza;
+		Pizza npizza = new Pizza(code, nom, prix);
+		newPizzas[pizzas.length] = npizza;
 		pizzas = newPizzas;
 		Menu(pizzas);
 	}
@@ -80,23 +80,28 @@ public class PizzeriaAdminConsoleApp {
 	public static void Update(Pizza[] pizzas) {
 		System.out.println("Mise à jour d'une pizza \n");
 		System.out.println("Choisissez la pizza à modifier :\n");
-		int index = 0;
 		for (Pizza pizza : pizzas) {
-			System.out.println(index + "  - " + pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + ")");
-			index++;
+			System.out.println(
+					pizza.getId() + "  - " + pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + ")");
 		}
-		System.out.println("\n 99- Annuler");
+		System.out.println("\n 0- Annuler");
 		int selection = sc.nextInt();
-		if (selection != 99 && selection < pizzas.length) {
-			System.out.print("Code ? ");
-			String ncode = sc.next();
-			System.out.print("Nom (Sans espace) ? ");
-			String nnom = sc.next();
-			System.out.print("Prix (XX.XX) ? ");
-			double nprix = sc.nextDouble();
-			pizzas[selection].setCode(ncode);
-			pizzas[selection].setNom(nnom);
-			pizzas[selection].setPrix(nprix);
+		if (selection != 0) {
+			Pizza temp;
+			for (int i = 0; i < pizzas.length; i++) {
+				if (pizzas[i].getId() == selection) {
+					temp = pizzas[i];
+					System.out.print("Code ? ");
+					String ncode = sc.next();
+					System.out.print("Nom (Sans espace) ? ");
+					String nnom = sc.next();
+					System.out.print("Prix (XX.XX) ? ");
+					double nprix = sc.nextDouble();
+					temp.setCode(ncode);
+					temp.setNom(nnom);
+					temp.setPrix(nprix);
+				}
+			}
 		}
 		Menu(pizzas);
 	}
@@ -106,17 +111,18 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("Choisissez la pizza à Supprimer :\n");
 		Pizza[] pizzaTemp = new Pizza[pizzas.length - 1];
 		for (Pizza pizza : pizzas) {
-			System.out.println(pizza.getId() + "  - " + pizza.getCode() + "  -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");
+			System.out.println(pizza.getId() + "  - " + pizza.getCode() + "  -> " + pizza.getNom() + " ("
+					+ pizza.getPrix() + "€)");
 		}
 		System.out.println("\n0  - Annuler");
 		int selectionDel = sc.nextInt();
 		if (selectionDel != 0) {
 			for (int i = 0; i < pizzas.length; i++) {
-				if(pizzas[i].getId()!= selectionDel){
-					pizzaTemp[i]=pizzas[i];
+				if (pizzas[i].getId() != selectionDel) {
+					pizzaTemp[i] = pizzas[i];
 				}
 			}
-			pizzas=pizzaTemp;
+			pizzas = pizzaTemp;
 			Pizza.setNbPizza(pizzas.length);
 		}
 		Menu(pizzas);
@@ -125,9 +131,9 @@ public class PizzeriaAdminConsoleApp {
 	public static void List(Pizza[] pizzas) {
 		System.out.println("\n");
 		for (Pizza pizza : pizzas) {
-			System.out.println(" "+pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");
+			System.out.println(" " + pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");
 		}
-		System.out.println(Pizza.getNbPizza()+" pizza(s) Disponible(s).");
+		System.out.println(Pizza.getNbPizza() + " pizza(s) Disponible(s).");
 		Menu(pizzas);
 	}
 

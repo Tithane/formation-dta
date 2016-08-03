@@ -12,11 +12,6 @@ public class Pizza {
 	
 	
 	//Constructor
-	public Pizza(){
-		setId(getIdPiz()+1);
-		setIdPiz(getIdPiz()+1);
-		setNbPizza(getNbPizza()+1);
-	}
 	public Pizza(String code, String nom, double prix) {
 		super();
 		setId(getIdPiz()+1);
@@ -65,7 +60,4 @@ public class Pizza {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-	
-	
-	
 }
