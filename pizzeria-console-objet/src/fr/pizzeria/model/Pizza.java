@@ -14,31 +14,27 @@ public class Pizza {
 	//Constructor
 	public Pizza(String code, String nom, double prix) {
 		super();
-		setId(getIdPiz()+1);
-		setIdPiz(getIdPiz()+1);
+		setId(idPiz+1);
 		this.code = code.toUpperCase();
 		this.nom = nom.replace('_',' ');
 		this.prix = prix;
-		setNbPizza(getNbPizza()+1);
+		nbPizza++;
+		idPiz++;
 	}
 
 	//getter & setter
 	
-	public static int getNbPizza() {
-		return nbPizza;
-	}
-	public static int getIdPiz() {
-		return idPiz;
-	}
-	public static void setIdPiz(int idPiz) {
-		Pizza.idPiz = idPiz;
+	public int getId() {
+		return id;
 	}
 	public static void setNbPizza(int nbPizza) {
 		Pizza.nbPizza = nbPizza;
 	}
-	public int getId() {
-		return id;
+
+	public static int getNbPizza() {
+		return nbPizza;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

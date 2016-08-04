@@ -109,20 +109,32 @@ public class PizzeriaAdminConsoleApp {
 	public static void Delete(Pizza[] pizzas) {
 		System.out.println("Suppression d'une pizza \n");
 		System.out.println("Choisissez la pizza à Supprimer :\n");
-		Pizza[] pizzaTemp = new Pizza[pizzas.length - 1];
 		for (Pizza pizza : pizzas) {
 			System.out.println(pizza.getId() + "  - " + pizza.getCode() + "  -> " + pizza.getNom() + " ("
 					+ pizza.getPrix() + "€)");
 		}
 		System.out.println("\n0  - Annuler");
 		int selectionDel = sc.nextInt();
+		boolean exist = false;
 		if (selectionDel != 0) {
 			for (int i = 0; i < pizzas.length; i++) {
-				if (pizzas[i].getId() != selectionDel) {
-					pizzaTemp[i] = pizzas[i];
+				if (pizzas[i].getId() == selectionDel) {
+					exist = true;
+					break;
 				}
 			}
-			pizzas = pizzaTemp;
+			if(exist){
+				Pizza[] pizzaTemp = new Pizza[pizzas.length - 1];
+				int j=0;
+				for(int i=0;i<pizzas.length;i++){
+					if(pizzas[i].getId()!=selectionDel){
+						pizzaTemp[j]=pizzas[i];
+						j++;
+					}
+				}
+				pizzas = pizzaTemp;
+			}
+			
 			Pizza.setNbPizza(pizzas.length);
 		}
 		Menu(pizzas);
