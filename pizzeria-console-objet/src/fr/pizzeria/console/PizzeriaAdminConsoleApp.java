@@ -8,20 +8,21 @@ public class PizzeriaAdminConsoleApp {
 
 	public static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.50);
-		Pizza pizza1 = new Pizza("MAR", "Margherita", 14.00);
-		Pizza pizza2 = new Pizza("REIN", "La reine", 11.50);
-		Pizza pizza3 = new Pizza("FRO", "La 4 fromages", 12.00);
-		Pizza pizza4 = new Pizza("CAN", "Cannibale", 12.50);
-		Pizza pizza5 = new Pizza("SAV", "La savoyarde", 13.00);
-		Pizza pizza6 = new Pizza("ORI", "L'orientale", 13.50);
-		Pizza pizza7 = new Pizza("IND", "L'indienne", 14.00);
-
-		Pizza[] pizzas = new Pizza[] { pizza0, pizza1, pizza2, pizza3, pizza4, pizza5, pizza6, pizza7 };
-		Menu(pizzas);
-	}
+	// public static void main(String[] args) {
+	// // TODO Auto-generated method stub
+	// Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.50);
+	// Pizza pizza1 = new Pizza("MAR", "Margherita", 14.00);
+	// Pizza pizza2 = new Pizza("REIN", "La reine", 11.50);
+	// Pizza pizza3 = new Pizza("FRO", "La 4 fromages", 12.00);
+	// Pizza pizza4 = new Pizza("CAN", "Cannibale", 12.50);
+	// Pizza pizza5 = new Pizza("SAV", "La savoyarde", 13.00);
+	// Pizza pizza6 = new Pizza("ORI", "L'orientale", 13.50);
+	// Pizza pizza7 = new Pizza("IND", "L'indienne", 14.00);
+	//
+	// Pizza[] pizzas = new Pizza[] { pizza0, pizza1, pizza2, pizza3, pizza4,
+	// pizza5, pizza6, pizza7 };
+	// Menu(pizzas);
+	// }
 
 	public static void Menu(Pizza[] pizzas) {
 		boolean etat = false;
@@ -123,18 +124,18 @@ public class PizzeriaAdminConsoleApp {
 					break;
 				}
 			}
-			if(exist){
+			if (exist) {
 				Pizza[] pizzaTemp = new Pizza[pizzas.length - 1];
-				int j=0;
-				for(int i=0;i<pizzas.length;i++){
-					if(pizzas[i].getId()!=selectionDel){
-						pizzaTemp[j]=pizzas[i];
+				int j = 0;
+				for (int i = 0; i < pizzas.length; i++) {
+					if (pizzas[i].getId() != selectionDel) {
+						pizzaTemp[j] = pizzas[i];
 						j++;
 					}
 				}
 				pizzas = pizzaTemp;
 			}
-			
+
 			Pizza.setNbPizza(pizzas.length);
 		}
 		Menu(pizzas);
