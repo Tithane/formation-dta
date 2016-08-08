@@ -3,6 +3,7 @@ package fr.pizzeria.ihm;
 import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.PizzaComparatorByPrice;
 import fr.pizzeria.service.Stockage;
 
 public class ListerPizzaAction extends Action {
@@ -14,6 +15,7 @@ public class ListerPizzaAction extends Action {
 	@Override
 	public void execute() {
 		System.out.println(" ***Liste des Pizzas***\n");
+		stockage.findAllPizzas().sort(new PizzaComparatorByPrice());
 		for (Pizza pizza : stockage.findAllPizzas()) {
 			System.out.println(
 					pizza.getId() + ". " + pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");

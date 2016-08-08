@@ -2,6 +2,7 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
+import fr.pizzeria.exception.NotExistException;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.service.Stockage;
 
@@ -19,9 +20,10 @@ public class ModifierPizzaAction extends Action {
 			System.out.println(
 					pizza.getId() + ". " + pizza.getCode() + " -> " + pizza.getNom() + " (" + pizza.getPrix() + "€)");
 		}
-		Pizza maPizza = new Pizza(sc.nextInt());
 
-		if (stockage.existPizza(maPizza)) {
+		Pizza maPizza = stockage.getPizza(new Pizza(sc.nextInt()));
+
+		if (stockage.findAllPizzas().indexOf(maPizza) != -1) {
 			System.out.println("Modification d'une pizza\n");
 			System.out.println("Veuillez saisir le code");
 			String code = sc.next();
@@ -34,7 +36,12 @@ public class ModifierPizzaAction extends Action {
 			maPizza.setNom(nom);
 			maPizza.setPrix(prix);
 
-			stockage.updatePizza(maPizza);
+			try {
+				stockage.updatePizza(maPizza);
+			} catch (NotExistException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("La pizza sélectionné n'existe pas.\n");
 		}
